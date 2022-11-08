@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+
+<head>
+    <meta name="google" content="notranslate">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy</title>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<script>
+
+</script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="canonical" href="https://getbootstrap.com/docs/4.3/components/spinners/">
+<style>
+    html,
+    body {
+        overflow: hidden;
+        min-height: 100% !important;
+        height: 100%;
+
+
+    }
+
+    .stop {
+        animation-name: none !important;
+        -webkit-animation-name: none !important;
+    }
+</style>
+
+<body>
+
+    <!-- buat button dengan id getText -->
+
+
+    <div class="row justify-content-center w-auto">
+
+        <div class="col-md-6">
+            <span class="anchor" id="formLogin"></span>
+            <!-- form card login -->
+            <div class="card card-outline-secondary h-100">
+                <div class=" card-header bg-white">
+                    <h3 class="mb-0 ">TOP UP MOBILE LEGENDS</h3>
+                </div>
+                <div class="card-body">
+                    <form autocomplete="off" class="form" id="formLogin" name="formLogin" role="form">
+                        <div id="selectedAssets" class="alert alert-warning text-center alert-dismissible" role="alert"
+                            style="display:none">Akun Anda Tidak Ditemukan
+                            <button type="button" id="closeAlert1" class="btn-close" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <div id="selectedAssetsDetails"> </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="uname1">ID Mobile Legends</label>
+                            <input class="form-control" name="uname1" type="text"
+                                placeholder="Masukkan ID Mobile Legends" id="user">
+                        </div>
+                        <div class="form-group mt-1">
+                            <label>Zone Mobile Legends</label>
+                            <input class="form-control" required="" placeholder="Masukkan Zone Mobile Legends"
+                                id="zone">
+                        </div>
+
+
+
+
+                        <button class="btn btn-primary" type="button" id="getText">
+                            <span class="d-none spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                id="spinner"></span>
+                            Lanjutkan
+                        </button>
+
+                    </form>
+                </div>
+                <!--/card-block-->
+            </div><!-- /form card login -->
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+
+
+
+
+
+
+
+        // SOME EVENT TRIGGER IT.
+
+        $('#closeAlert1').on('click', function () {
+            $("#selectedAssets").hide();
+        });
+        $('#user').on('input', function () {
+            $("#selectedAssets").hide();
+            // do something
+        });
+        $('#zone').on('input', function () {
+            $("#selectedAssets").hide();
+            // do something
+        });
+        $('#getText').on('click',
+            async e => {
+                let spinner = $(e.currentTarget).find('span')
+                spinner.removeClass('d-none')
+
+                const baseUrl = 'https://sheet.spacet.me'
+                const sheetId = '1ux6488UshyjtcuedF53WW5LGurQ152awmal4PZ8v36M'
+                const sheetName = 'Sheet1'
+                const endpoint = `${baseUrl}/${sheetId}/${sheetName}.json`
+                const { values } = await fetch(endpoint)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Unable to load data from ' + endpoint)
+                        }
+                        return response.json()
+                    })
+                const [header, ...rows] = values
+                let api = header[1]
+
+
+
+
+
+                // kita buat function getText, jadi ketika diklik dia akan melakukan apa ? nah kita buat fungsi-nya (function)
+
+                user = document.getElementById("user").value
+
+                zone = document.getElementById("zone").value
+                // kita gunakan fetch dalam kita ambil data sample.txt yang sudah kita buat
+                fetch('https://api-bo.my.id/v2.1/game/mobilelegends/?id=' + user + '&zone=' + zone + '&key=' + api)
+                    // kita buat response menjadi text
+                    .then((response) => response.json())
+                    // lalu data nya kita ambil dan kita masuken ke p id output
+                    .then((data) => {
+                        let nick = data.nickname
+
+                        sessionStorage.setItem("usernameml", nick)
+
+                        if (nick == undefined) {
+                            console.log(user)
+                            setTimeout(_ => spinner.addClass('d-none'),
+                                $("#user").val(''),
+                                $("#zone").val(''),
+                                $("#selectedAssets").show()
+                                , 2000)
+
+
+                        } else {
+                            const nextURL = 'buyml';
+
+
+                            // This will create a new entry in the browser's history, without reloading
+
+                            window.location.assign(nextURL);
+
+
+
+                        }
+                    })
+                    // membuat catch jadi kalau ada yang error langsung ketawan
+                    .catch((err) => console.log(err)
+
+                    );
+
+            });
+    </script>
+</body>
+
+</html>

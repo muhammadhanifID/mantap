@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pubg Buy</title>
+    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        .navbar-item img {
+            max-height: none;
+        }
+
+        img {
+            height: 70px;
+        }
+
+        .hero-body {
+            padding-top: 1rem !important;
+        }
+
+        .sada {
+            height: 100px;
+            width: auto;
+            display: flex;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- START NAV -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+
+                <a class="navbar-item" href="../">
+
+                    <img src="img/me (1).png" alt="Logo">
+
+                </a>
+
+
+
+
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+
+            </div>
+        </div>
+        </div>
+        </div>
+    </nav>
+    <!-- END NAV -->
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-8 is-variable ">
+                    <div class="column is-two-thirds has-text-left">
+                        <h1 class="title is-1">TOP UP PUBG</h1>
+
+                        <img src="img/game/PUBG_RPS11_tile.jpg" class="sada">
+
+                        <p class="is-size-4 has-text-justified">PUBG sebuah permainan battle royale, di mana 100 orang
+                            sekaligus dapat
+                            bermain secara daring. Pemenang dari permainan ini adalah individu atau tim yang dapat
+                            bertahan hingga akhir.</p>
+
+                    </div>
+                    <div class="column is-one-third has-text-left">
+                        <div class="field">
+                            <label class="label">ID Pubg</label>
+                            <div class="control">
+                                <input class="input is-medium" type="text" id="idpubg">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Pesan</label>
+                            <div class="control">
+                                <textarea class="textarea is-medium" id="message"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="button is-link is-fullwidth has-text-weight-medium is-medium"
+                            id="getText">Send
+                            Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+</body>
+<script>
+    $('#getText').on('click', function () {
+        var idpubg = document.getElementById("idpubg").value
+        sessionStorage.setItem("idpubg", idpubg)
+
+        var message = document.getElementById("message").value
+        sessionStorage.setItem("messagepubg", message)
+
+
+
+        $("#getText").addClass("is-loading");
+
+
+
+
+        function move() {
+
+            $("#getText").removeClass("is-loading")
+
+
+            const nextURL = 'buypubg.html';
+
+
+            // This will create a new entry in the browser's history, without reloading
+
+            window.location.assign(nextURL);
+
+
+        }
+
+        setInterval(move, 3000)
+        return false;
+
+    })
+</script>
+
+</html>
