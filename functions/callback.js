@@ -7,6 +7,6 @@ exports.handler = async function (event) {
 		},
 
 		statusCode: 200,
-		body: "bisa gabs",
+		body: JSON.stringify("bisa gabs"),
 	};
 };

@@ -364,7 +364,7 @@
             <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
               <span><a href="#">© MeikelStore</a></span>
               <span><a href="#">Contact</a></span>
-              <span><a href="#">Privacy & terms</a></span>
+              <span><a href=".">Privacy & terms</a></span>
             </div>
           </div>
         </div>
@@ -380,9 +380,10 @@
       const response = await fetch("/.netlify/functions/hello-world", {
         method: 'POST',
 
+
         body:
           // your expected POST request payload goes here
-          { query: "title@gmail.com" }
+          { tes: "title" }
 
       })
       const data = await response.json();
