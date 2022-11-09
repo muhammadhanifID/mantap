@@ -1,5 +1,15 @@
+# sample netlify.toml
 [build]
-  functions = "functions"
+command = "# no build command"
+  Functions = "functions" 
+  publish = "dist"
+  NODE_ENV ="16.0.0"
+
+[functions]
+  node_bundler = "esbuild"
+
+
+
 
 [[redirects]]
   from = "/*"
