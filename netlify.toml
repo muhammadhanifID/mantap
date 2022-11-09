@@ -2,7 +2,7 @@
 [build]
 command = "# no build command"
   Functions = "functions" 
-  publish = "dist"
+  publish = "public"
   NODE_ENV ="16.0.0"
 
 [functions]
